@@ -3,12 +3,12 @@ angular.module('temetfact').factory("LoginService", function ($rootScope,Firebas
 	return {
 
 		userEmail : "",
-		login: function(email,password) {
-			var that = this;
-			var promise = FirebaseService.login(email,password)
+		login: function(email, password) {
+			var self = this;
+			var promise = FirebaseService.login(email, password)
 				.then(function(){
-
-					that.userEmail = email;
+					console.log('tpt');
+					self.userEmail = email;
 					$rootScope.$broadcast("loginSuccess");
 					return email;
 				});

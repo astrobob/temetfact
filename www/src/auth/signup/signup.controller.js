@@ -1,5 +1,5 @@
 angular.module('temetfact')
-	.controller('SignupCtrl', function($scope,LoginService,$state) {
+	.controller('SignupCtrl', function($scope, LoginService, $state) {
 
 
 		$scope.signUp=function(){
@@ -9,7 +9,7 @@ angular.module('temetfact')
 
 					$scope.closeModal();
 
-					$state.go('tab.my-place');
+					$state.go('menu.client');
 
 			});
 

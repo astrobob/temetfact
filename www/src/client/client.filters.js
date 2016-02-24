@@ -3,7 +3,7 @@ angular.module('temetfact')
 	.filter('groupByFirstLetter',function(){
 		return function(array) {
 			return _.groupBy(array, function(n) {
-				return n.name.substring(0,1);
+				return ('lastname' in n) ? n.lastname.substring(0,1) : '';
 			});
 		};
 	})

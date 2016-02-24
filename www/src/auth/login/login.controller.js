@@ -1,8 +1,6 @@
 angular.module('temetfact')
 	.controller('LoginCtrl', function($scope, $ionicLoading,$ionicModal,LoginService,$state) {
 
-
-
 		$scope.login=function(){
 
 			$ionicLoading.show();
@@ -10,7 +8,7 @@ angular.module('temetfact')
 			LoginService.login($scope.email,$scope.password)
 				.then(function(){
 
-					$state.go('client');
+					$state.go('menu.client');
 					$ionicLoading.hide();
 				});
 		};

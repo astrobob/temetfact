@@ -1,35 +1,24 @@
 angular.module('temetfact')
-	.controller('ClientCtrl', function($scope, $ionicLoading, ClientService, $stateParams) {
+	.controller('ClientsCtrl', function($scope, $ionicLoading, ClientService) {
 
 		$ionicLoading.show({
 			content: 'Loading...',
 			showBackdrop: false
 		});
 
-		ClientService.ClientService().then(function(data){
-
+		ClientService.getGroupedClients().then(function(data){
 			$scope.grouped = data;
 			$ionicLoading.hide();
 
 		});
 
-	});
+	})
 
+	.controller('ClientDetailCtrl', function($scope, $ionicLoading, ClientService, $stateParams) {
 
-angular.module('places')
-	.controller('FriendsCtrl', function($scope, $ionicLoading,FriendsService) {
-
-		$ionicLoading.show({
-			content: 'Loading...',
-			showBackdrop: false
+		ClientService.getClient($stateParams.id).then(function(data){
+			$scope.client = data;
+			console.log($scope.client)
 		});
-
-		FriendsService.getGroupedFriends().then(function(data){
-
-			$scope.grouped = data;
-			$ionicLoading.hide();
-
-		});
-
 
 	});
