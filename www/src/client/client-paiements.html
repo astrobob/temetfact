@@ -1,6 +1,13 @@
 <ion-view>
-  <ion-content>
-  	<div>
-    </div>
+  <ion-content class="padding">
+    <h2>Paiements</h2>
+  	<ion-list>
+  	  <ion-item ng-repeat="paiement in paiements">
+  	    {{ paiement.date | dateFormat }} -- {{paiement.currency}} {{paiement.amount}}
+  	    <i class="icon paiement-account" ng-class="paiement.account == '1000' ? 'ion-social-usd' : (paiement.account == '1001' ? 'ion-ios-locked' : '')"></i>
+		
+ 	    <i class="icon edit-list ion-edit"></i>
+  	  </ion-item>
+  	</ion-list>      
   </ion-content>
 </ion-view>

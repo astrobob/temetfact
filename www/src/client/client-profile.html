@@ -1,18 +1,47 @@
 <ion-view>
-  <ion-content scroll="true">
+  <ion-content scroll="true" class="padding">
   	<h1>
       {{ client.gender }} {{ client.firstname }} {{ client.lastname }}
     </h1>
   	<div>
-  	  <label>Adresse</label>
       <p>{{ client.address }}</p>
-      <p>{{ client.zip }}</p>
-      <p>{{ client.city }}<p>
-  	  <label>Téléphone</label>
+      <p>{{ client.zip }} {{ client.city }}<p>
+      <p>{{ client.country }}<p>
+    <h2>Coordonnées</h2>    
+    <div>
       <p>Tel : {{ client.phone }}</p>
       <p>Mobile : {{ client.zip }}</p>
-      <p>Prof : {{ client.city }}<p>
+      <p>Tel prof : {{ client.city }}<p>
+      <p>E-mail : {{ client.email }}<p>
     </div>
-    <button ui-sref="menu.editclient({id: client._id})">Editer le profil</button>
+    <h2>Informations complémentaires</h2>    
+    <div>
+      <p>Etat civil : {{ client.civilstatus }}</p>
+      <p>Nb. enfants : {{ client.children }}</p>
+      <p>Enceinte : {{ client.pregnant ? 'oui' : 'non' }}<p>
+      <p>Date de naissance : {{ client.birthdate | dateFormat }}<p>
+    </div>
+    <h2>Informations d'assuré</h2>    
+    <div>
+      <p>Assurance : {{ client.insurance }}</p>
+      <p>N° d'assuré : {{ client.ins_ref }}</p>
+      <p>Type d'assurance : {{ client.ins_type }}<p>
+    </div>
+    <h2>Etat de santé</h2>    
+    <div>
+      <p>Maladies : {{ client.disease }}</p>
+      <p>Accidents : {{ client.accident }}</p>
+      <p>Opérations : {{ client.surgery }}</p>
+      <p>Traitements : {{ client.treatment }}</p>
+      <p>Médicaments : {{ client.medecine }}</p>
+    </div>
+    <h2>Autres</h2>    
+    <div>
+      <p>Raison de la visite : {{ client.reason }}</p>
+      <p>Commentaires : {{ client.info }}</p>
+      <p>Date de signature : {{ client.date }}</p>
+      <p>Abonnement newsletter : {{ client.newsletter ? 'oui' : 'non' }}<p>
+    </div>
+    <button class="button button-clear button-positive" ui-sref="menu.editclient({id: client._id})">Modifier le client</button>
   </ion-content>
 </ion-view>

@@ -1,5 +1,5 @@
 <ion-header-bar align-title="center" class="bar-positive" ng-if="enabled">
-    <div class="buttons">
+    <div class="buttons" ng-if="previousURL">
         <a class="button button-icon icon ion-chevron-left" ui-sref="{{previousURL}}"></a>
     </div>
     <h1 class="title">{{title}}</h1>

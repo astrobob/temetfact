@@ -24,22 +24,23 @@ angular.module('temetfact').factory("ClientService", function ($firebaseArray, $
 			});
 		},
 
-		getTraitementsByClient: function(clientID) {
-			return this.getClient(clientID).then(function (res) {
-				if (res.treatment_id) {
-					var _traitement = $firebaseObject(ref.child('traitement').child(res.treatment_id));
-					return _traitement.$loaded().then(function (res) {
-						console.log(res);
-						return res;
-					});
-				}
-				return null;
+		getTraitement: function(traitementID) {
+			var _traitement = $firebaseObject(ref.child('traitement').child(traitementID));
+			return _traitement.$loaded().then(function (res) {
+				return res;
 			});
 		},
 
-		getPaiementsByClient: function(clientID) {
-			var _client = $firebaseArray(ref.child('paiement'));
-			return _client.$loaded().then(function (res) {
+		getConsultation: function(consultationID) {
+			var _consultations = $firebaseObject(ref.child('consultation').child(consultationID));
+			return _consultations.$loaded().then(function (res) {
+				return res;
+			});
+		},		
+
+		getPaiement: function(paiementID) {
+			var _paiement = $firebaseObject(ref.child('paiement').child(paiementID));
+			return _paiement.$loaded().then(function (res) {
 				return res;
 			});
 		}

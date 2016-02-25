@@ -1,10 +1,138 @@
 <ion-view>
-  <ion-content class="has-header">
-  	<p>toto</p>
-  	<p>toto</p>
-  	<p>toto</p>
-  	<p>toto</p>
-  	<p>toto</p>
-  	<p>toto</p>
+  <ion-content class="has-header padding" ng-controller="ClientsCtrl">
+	<div class="list list-inset">
+	  <label class="item item-input item-select">
+	    <div class="input-label">Genre</div>
+	    <select>
+	      <option value="M.">M.</option>
+	      <option value="Mme">Mme</option>
+	      <option value="Mlle">Mlle</option>
+	      <option value="Dr.">Dr.</option>
+	      <option value="Prof.">Prof.</option>
+	    </select>
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Nom" ng-model="client.lastname">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Prénom" ng-model="client.firstname">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Adresse" ng-model="client.address">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Code postal" ng-model="client.zip">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Ville" ng-model="client.city">
+	  </label>
+	  <label class="item item-input item-select">
+	    <div class="input-label">
+	      Pays
+	    </div>
+	    <select ng-model="client.country">
+			<option value="ch" selected="selected">Suisse</option>
+			<option value="fr">France</option>
+			<option value="de">Allemagne</option>
+			<option value="au">Autriche</option>
+			<option value="be">Belgique</option>
+			<option value="dk">Danemark</option>
+			<option value="es">Espagne</option>
+			<option value="fi">Finlande</option>
+			<option value="gb">Grande-Bretagne</option>
+			<option value="it">Italie</option>
+			<option value="li">Liechtenstein</option>
+			<option value="lu">Luxembourg</option>
+			<option value="no">Norvège</option>
+			<option value="po">Portugal</option>
+			<option value="se">Suède</option></select>	    
+	    </select>
+	  </label>
+	<h2>Coordonnées</h2>
+	<div class="list list-inset">
+	  <label class="item item-input">
+	    <input type="text" placeholder="Téléphone" ng-model="client.phone">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Mobile" ng-model="client.mobile">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="Tel. prof" ng-model="client.prof_phone">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" placeholder="E-mail" ng-model="client.email">
+	  </label>
+	</div>
+	<h2>Informations complémentaires</h2>
+	<div class="list list-inset">
+	  <label class="item item-input item-select">
+	    <div class="input-label">Etat civil</div>
+	    <select ng-model="client.civilstatus">
+	      <option value=""></option>
+	      <option value="Célibataire">Célibataire</option>
+	      <option value="Divorcé(e)">Divorcé(e)</option>
+	      <option value="Marié(e)">Marié(e)</option>
+	      <option value="Séparé">Séparé</option>
+	      <option value="Veuf(ve)">Veuf(ve)</option>
+	    </select>
+	  </label>
+	  <label class="item item-input">
+	    <input type="number" placeholder="Nombre d'enfants" ng-model="client.children">
+	  </label>
+	  <label class="item item-toggle">
+	     Enceinte
+		  <label class="toggle">
+		     <input type="checkbox" ng-model="client.pregnant">
+		     <div class="track">
+		       <div class="handle"></div>
+		     </div>
+		</label>	
+	  </label>	  
+	</div>
+	https://forum.ionicframework.com/t/form-date-picker/182/18
+    <h2>Etat de santé</h2>    
+    <div class="list list-inset">
+	  <label class="item item-input">
+	    <textarea type="text" placeholder="Maladies" ng-model="client.disease"></textarea>
+	  </label>
+	  <label class="item item-input">
+	    <textarea type="text" placeholder="Accidents" ng-model="client.accident"></textarea>
+	  </label>
+	  <label class="item item-input">
+	    <textarea type="text" placeholder="Opérations" ng-model="client.surgery"></textarea>
+	  </label>
+	  <label class="item item-input">
+	    <textarea type="text" placeholder="Traitements" ng-model="client.treatment"></textarea>
+	  </label>
+	  <label class="item item-input">
+	    <textarea type="text" placeholder="Médicaments" ng-model="client.medecine"></textarea>
+	  </label>
+    </div>
+    <h2>Autres</h2>    
+    <div class="list list-inset">
+	  <label class="item item-input">
+	    <textarea type="text" placeholder="Raison de la visite" ng-model="client.reason"></textarea>
+	  </label>
+	  <label class="item item-input">
+	    <textarea type="text" placeholder="Commentaires" ng-model="client.info"></textarea>
+	  </label>
+	  <label class="item item-input">
+	    Date de signature
+	  </label>
+      <ionic-datepicker idate="currentDate" >
+    	<button class="button button-block button-positive"> {{ client.birthdate | dateFormat }} </button>
+    	{{ currentDate | date:'dd - MMMM - yyyy' }}
+	  </ionic-datepicker>
+	  <label class="item item-toggle">
+	     Abonnement newsletter
+		  <label class="toggle">
+		     <input type="checkbox" ng-model="client.newsletter">
+		     <div class="track">
+		       <div class="handle"></div>
+		     </div>
+		</label>	
+	  </label>	  
+    </div>
+	<button class="button button-block button-positive">Enregistrer</button>
   </ion-content>
 </ion-view>

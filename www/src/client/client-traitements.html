@@ -1,7 +1,26 @@
 <ion-view>
-  <ion-content>
-  	<div>
-      <h1>{{ traitements.subject }}</h1>
+  <ion-content class="padding">
+  	<div ng-repeat="traitement in traitements">
+  	  <i class="icon treatment-status" ng-class="traitement.type == 'P' ? 'ion-eye' : 'ion-eye-disabled'"></i>
+      <h1>{{ traitement.subject }}</h1>
+      <p>
+      <label>Type de traitement : <label>
+      {{ traitement.treatment }}
+      </p>
+      <p>
+      <label>Début du traitement : <label>
+      {{ traitement.date | dateFormat }}
+      </p>
+      <h2>Consultations</h2>
+  	  <ion-list>
+  	    <ion-item ng-repeat="consult in traitement.consults">
+  	      {{ consult.date | dateFormat }} -- {{consult.treatment}}
+          <i class="icon edit-list ion-edit"></i>
+  	    </ion-item>
+  	  </ion-list>      
+      <button class="button button-clear button-positive">Modifier le traitement</button>
+      <p>&nbsp;</p>
+      <hr />
     </div>
   </ion-content>
 </ion-view>

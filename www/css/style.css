@@ -1,1 +1,69 @@
 /* Empty. Add your own CSS if you like */
+.treatment-status {
+	right: 0;
+    position: absolute;
+    font-size: 2em;
+}
+
+.paiement-account {
+    font-size: 1em;
+}
+
+.edit-list {
+	right: 10px;
+	color: #387ef5;
+    position: absolute;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+
+
+/* Empty. Add your own CSS if you like */
+
+.ionic-datepicker {
+
+}
+
+.ionic-datepicker .popup-head {
+    display:none;
+}
+
+.color_blue {
+    color: rgb(56, 126, 245) !important;
+}
+
+.bg_color_blue {
+    background-color: rgb(56, 126, 245);
+}
+
+.date_col:hover {
+    background-color: rgba(56, 126, 245, 0.5);
+    cursor: pointer;
+}
+
+.date_col:active {
+    background-color: rgba(56, 126, 245, 1);
+    cursor: pointer;
+}
+
+.no_padding {
+    padding: 0;
+}
+
+.date_cell {
+    padding: 5px;
+}
+
+.error_msg {
+    color: #cc0000 !important;
+    font-size: 12px;
+}
+
+.date_selected {
+    background-color: rgba(56, 126, 245, 1);
+}
+
+.today {
+    background-color: rgba(186, 186, 186, 1);
+}

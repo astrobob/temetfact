@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
+angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker'])
 
   .constant('DATABASE_URL', 'https://temetfacturation.firebaseio.com/')
 
@@ -55,7 +55,7 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
       .state('menu.client', {
         url: '/client',
         data:{
-          title:"Clients"
+          title:"Clients",
         },
         views: {
           'menu-content': {
@@ -68,7 +68,8 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
       .state('menu.clientdetail', {
         url: '/client-detail/:id',
         data:{
-          title:"Détail du client"
+          title:"Détail du client",
+          previousURL:'menu.client'
         },
         views: {
           'menu-content': {
@@ -81,7 +82,8 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
       .state('menu.clientdetail.profil', {
         url: '/profil',
         data:{
-          title:"Détail du client"
+          title:"Détail du client",
+          previousURL:'menu.client'
         },
         views: {
           'profil': {
@@ -94,7 +96,8 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
       .state('menu.clientdetail.paiements', {
         url: '/paiements',
         data:{
-          title:"Paiements du client"
+          title:"Paiements du client",
+          previousURL:'menu.client'
         },
         views: {
           'paiements': {
@@ -107,7 +110,8 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
       .state('menu.clientdetail.traitements', {
         url: '/traitements',
         data:{
-          title:"Traitements du client"
+          title:"Traitements du client",
+          previousURL:'menu.client'
         },
         views: {
           'traitements': {
@@ -120,12 +124,13 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
       .state('menu.editclient', {
         url: '/edit-client/:id',
         data:{
-          title:"Edition du client"
+          title:"Edition du client",
+          previousURL:'menu.client'
         },
         views: {
           'menu-content': {
             templateUrl: 'src/client/client-edit.html',
-            controller:'ClientEditCtrl'
+            controller:'ClientDetailCtrl'
           }
         }
       })
