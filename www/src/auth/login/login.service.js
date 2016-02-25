@@ -7,7 +7,6 @@ angular.module('temetfact').factory("LoginService", function ($rootScope,Firebas
 			var self = this;
 			var promise = FirebaseService.login(email, password)
 				.then(function(){
-					console.log('tpt');
 					self.userEmail = email;
 					$rootScope.$broadcast("loginSuccess");
 					return email;

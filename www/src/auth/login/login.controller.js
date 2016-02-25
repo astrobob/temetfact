@@ -10,12 +10,15 @@ angular.module('temetfact')
 
 					$state.go('menu.client');
 					$ionicLoading.hide();
+				}, function()
+				{
+					$ionicLoading.hide();
 				});
 		};
 
 
 		$scope.openSignUp= function(){
-
+			console.log('toto')
 			$ionicModal.fromTemplateUrl('src/auth/signup/signup.modal.html', {
 				scope: $scope,
 				animation: 'slide-in-up'
@@ -24,8 +27,6 @@ angular.module('temetfact')
 				$scope.modal.show();
 			});
 		}
-
-
 	});
 
 

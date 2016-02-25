@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
 
-  .constant('DATABASE_URL', 'https://temet-facturation.firebaseio.com/')
+  .constant('DATABASE_URL', 'https://temetfacturation.firebaseio.com/')
 
   .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -44,12 +44,12 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
         url: "/menu",
         abstract: true,
         templateUrl: "src/nav/menu/menu.html",
-        controller: "MenuCtrl"
+        controller: "MenuCtrl",
 
         //disable resolve auth to test more quickly
-        /*resolve:{
+        resolve:{
           auth: authResolve
-        }*/
+        }
       })
 
       .state('menu.client', {
@@ -76,7 +76,60 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova'])
             controller:'ClientDetailCtrl'
           }
         }
-      });      
+      })
+
+      .state('menu.clientdetail.profil', {
+        url: '/profil',
+        data:{
+          title:"Détail du client"
+        },
+        views: {
+          'profil': {
+            templateUrl: 'src/client/client-profile.html',
+            controller:'ClientDetailCtrl'
+          }
+        }
+      })
+
+      .state('menu.clientdetail.paiements', {
+        url: '/paiements',
+        data:{
+          title:"Paiements du client"
+        },
+        views: {
+          'paiements': {
+            templateUrl: 'src/client/client-paiements.html',
+            controller:'ClientPaiementsCtrl'
+          }
+        }
+      })
+
+      .state('menu.clientdetail.traitements', {
+        url: '/traitements',
+        data:{
+          title:"Traitements du client"
+        },
+        views: {
+          'traitements': {
+            templateUrl: 'src/client/client-traitements.html',
+            controller:'ClientTraitementsCtrl'
+          }
+        }
+      })
+
+      .state('menu.editclient', {
+        url: '/edit-client/:id',
+        data:{
+          title:"Edition du client"
+        },
+        views: {
+          'menu-content': {
+            templateUrl: 'src/client/client-edit.html',
+            controller:'ClientEditCtrl'
+          }
+        }
+      })
+
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

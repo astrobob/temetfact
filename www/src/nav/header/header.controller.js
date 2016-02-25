@@ -1,11 +1,12 @@
 "use strict";
 
 angular.module('temetfact')
-	.controller('HeaderCtrl', function($rootScope,$scope,$state) {
+	.controller('HeaderCtrl', function($rootScope,$scope,$state, HeaderService) {
 
 		//properties
 		$scope.enabled = _isEnabled();
 		$scope.title = _getTitle();
+		$scope.previousURL = HeaderService.getHeaderBack();
 
 		//events
 		$rootScope.$on('$stateChangeSuccess',

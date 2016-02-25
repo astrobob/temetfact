@@ -1,0 +1,18 @@
+<ion-view>
+  <ion-content scroll="true">
+  	<h1>
+      {{ client.gender }} {{ client.firstname }} {{ client.lastname }}
+    </h1>
+  	<div>
+  	  <label>Adresse</label>
+      <p>{{ client.address }}</p>
+      <p>{{ client.zip }}</p>
+      <p>{{ client.city }}<p>
+  	  <label>Téléphone</label>
+      <p>Tel : {{ client.phone }}</p>
+      <p>Mobile : {{ client.zip }}</p>
+      <p>Prof : {{ client.city }}<p>
+    </div>
+    <button ui-sref="menu.editclient({id: client._id})">Editer le profil</button>
+  </ion-content>
+</ion-view>
