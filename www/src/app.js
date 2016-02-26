@@ -26,7 +26,7 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
   .config(function ($urlRouterProvider, $stateProvider) {
 
     //resolve to restrict access without authentification
-    var authResolve = function(LoginService,$state){
+    var authResolve = function(LoginService, $state){
       var promise = LoginService.requireAuth()
         .catch(function(error){
 
@@ -90,7 +90,13 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
             templateUrl: 'src/client/client-profile.html',
             controller:'ClientDetailCtrl'
           }
+        },
+        resolve:{
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Toto');
+          }
         }
+
       })
 
       .state('menu.clientdetail.paiements', {
@@ -103,6 +109,11 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
           'paiements': {
             templateUrl: 'src/client/client-paiements.html',
             controller:'ClientPaiementsCtrl'
+          }
+        },
+        resolve:{
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Titi');
           }
         }
       })
@@ -135,6 +146,19 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
         }
       })
 
+      .state('menu.createclient', {
+        url: '/create-client',
+        data:{
+          title:"Créer un client",
+          previousURL:'menu.client'
+        },
+        views: {
+          'menu-content': {
+            templateUrl: 'src/client/client-edit.html',
+            controller:'ClientDetailCtrl'
+          }
+        }
+      })
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

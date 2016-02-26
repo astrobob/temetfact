@@ -1,16 +1,22 @@
 <ion-view>
   <ion-content class="has-header">
 	  <div class="list list-inset">
-		<label class="item item-input">
+  		<label class="item item-input">
 	      <i class="icon ion-search placeholder-icon"></i>
 	      <input ng-model="query" type="text" placeholder="Filtrer" autofocus>
 	    </label>
 	  </div>  
-      <div ng-repeat="(key,value) in grouped">
-          <div class="item item-divider">{{key}}</div>
-          <a class="item" ng-repeat="item in value | filter:query" ui-sref="menu.clientdetail({id: item._id})">
-              {{item.gender}} {{item.lastname | capitalize}} {{item.firstname | capitalize}}
-          </a>
-      </div>
+    <div ng-repeat="(key,value) in grouped">
+        <div class="item item-divider">{{key}}</div>
+        <a class="item" ng-repeat="item in value | filter:query" ui-sref="menu.clientdetail({id: item._id})">
+            {{item.gender}} {{item.lastname | capitalize}} {{item.firstname | capitalize}}
+        </a>
+    </div>
+
   </ion-content>
+
+    <!-- Colored FAB button with ripple -->
+    <button class="fab-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ui-sref="menu.createclient">
+      <i class="material-icons">add</i>
+    </button>
 </ion-view>

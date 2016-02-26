@@ -17,6 +17,12 @@
     cursor: pointer;
 }
 
+.fab-button {
+    position: absolute !important;
+    z-index:1000;
+    bottom:50px;
+    right:50px;
+}
 
 
 /* Empty. Add your own CSS if you like */

@@ -1,5 +1,5 @@
 angular.module('temetfact')
-	.controller('ClientsCtrl', function($scope, $ionicLoading, ClientService) {
+	.controller('ClientsCtrl', function($scope, $ionicLoading, ClientService, HeaderService) {
 
 		$ionicLoading.show({
 			content: 'Loading...',
@@ -8,28 +8,28 @@ angular.module('temetfact')
 
 		ClientService.getGroupedClients().then(function(data){
 			$scope.grouped = data;
-			console.log(data)
 			$ionicLoading.hide();
-
 		});
 
 		$scope.filterFunction = function(element) {
 			return element.name.match(/^Ma/) ? true : false;
-		};		
+		};
 
 	})
 
 	.controller('ClientDetailCtrl', function($rootScope, $scope, $ionicLoading, ClientService, $stateParams, HeaderService) {
 
-		ClientService.getClient($stateParams.id).then(function(data){
-			$scope.client = data;
-		});
+		if ($stateParams.id) {
+			ClientService.getClient($stateParams.id).then(function(data){
+				$scope.client = data;
+			});
+		}
 
 		$scope.currentDate = new Date();
 
 	})
 
-	.controller('ClientPaiementsCtrl', function($scope, $ionicLoading, ClientService, $stateParams) {
+	.controller('ClientPaiementsCtrl', function($scope, $ionicLoading, ClientService, $stateParams, HeaderService) {
 
 		ClientService.getClient($stateParams.id).then(function(data){
 			var client = data;
@@ -69,10 +69,4 @@ angular.module('temetfact')
 			}
 		})
 
-	})
-
-	.controller('ClientEditCtrl', function($scope, $ionicLoading, ClientService, $stateParams) {
-
-		console.log('toto')
-
-	});	
+	});

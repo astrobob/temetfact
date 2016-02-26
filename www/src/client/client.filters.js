@@ -2,7 +2,8 @@ angular.module('temetfact')
 
 	.filter('groupByFirstLetter', function(){
 		return function(array) {
-			return _.groupBy(array, function(n) {
+            var results = _.orderBy(array, ['lastname'], ['asc'])
+			return _.groupBy(results, function(n) {
 				return ('lastname' in n) ? n.lastname.substring(0,1).toUpperCase() : '';
 			});
 		};

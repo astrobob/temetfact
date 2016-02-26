@@ -88,8 +88,11 @@
 		     </div>
 		</label>	
 	  </label>	  
+	  <label>
+	    Date de naissance
+	    <button class="button button-block button-positive"> {{ client.birthdate | date:'dd - MMMM - yyyy' }} </button>
+	  </label>	
 	</div>
-	https://forum.ionicframework.com/t/form-date-picker/182/18
     <h2>Etat de santé</h2>    
     <div class="list list-inset">
 	  <label class="item item-input">
@@ -116,13 +119,12 @@
 	  <label class="item item-input">
 	    <textarea type="text" placeholder="Commentaires" ng-model="client.info"></textarea>
 	  </label>
-	  <label class="item item-input">
+	  <label>
 	    Date de signature
+	      <ionic-datepicker idate="currentDate" >
+	    	<button class="button button-block button-positive"> {{ client.date | date:'dd - MMMM - yyyy' }} </button>
+		  </ionic-datepicker>
 	  </label>
-      <ionic-datepicker idate="currentDate" >
-    	<button class="button button-block button-positive"> {{ client.birthdate | dateFormat }} </button>
-    	{{ currentDate | date:'dd - MMMM - yyyy' }}
-	  </ionic-datepicker>
 	  <label class="item item-toggle">
 	     Abonnement newsletter
 		  <label class="toggle">
