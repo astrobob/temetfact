@@ -1,7 +1,7 @@
 <ion-view class="row row-no-padding">
         <div class="col col-center">
             <div class="logo">
-                <i class="icon ion-ios-location"></i>
+                <i class="icon ion-ios-locked"></i>
             </div>
             <div class="list">
                 <label class="item item-input">
@@ -13,6 +13,9 @@
             </div>
             <div class="padding-left padding-right">
                 <button class="button button-block button-positive" ng-click="login()">Sign in</button>
+            </div>
+            <div class="row row-center">
+              <ion-checkbox ng-model="savePassword" class="rememberPassword">Remember my password</ion-checkbox>
             </div>
             <div class="row">
                 <div class="col text-center">

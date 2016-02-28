@@ -3,11 +3,10 @@ angular.module('temetfact').factory("ClientService", function ($firebaseArray, $
 
 	return {
 
-		getGroupedClients: function () {
+		getGroupedClients: function() {
 			return this.getClients().then(function(result){
 				return $filter('groupByFirstLetter')(result);
 			});
-
 		},
 
 		getClients: function() {
@@ -43,7 +42,21 @@ angular.module('temetfact').factory("ClientService", function ($firebaseArray, $
 			return _paiement.$loaded().then(function (res) {
 				return res;
 			});
-		}
+		},
+
+		getGroupedPaiements: function(account, year) {
+			return this.getPaiements().then(function(result) {
+				return $filter('groupByMonth')(result, account, year);
+			});
+		},
+
+		getPaiements: function() {
+			var _paiements = $firebaseArray(ref.child('paiement'));
+			return _paiements.$loaded().then(function (res) {
+				return res;
+			});
+		},
+
 	}
 
 });

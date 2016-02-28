@@ -4,10 +4,15 @@
   	<ion-list>
   	  <ion-item ng-repeat="paiement in paiements">
   	    {{ paiement.date | dateFormat }} -- {{paiement.currency}} {{paiement.amount}}
-  	    <i class="icon paiement-account" ng-class="paiement.account == '1000' ? 'ion-social-usd' : (paiement.account == '1001' ? 'ion-ios-locked' : '')"></i>
+  	    <i class="icon paiement-account" ng-class="paiement.account == '1000' ? 'ion-cash' : (paiement.account == '1001' ? 'ion-card' : '')"></i>
 		
- 	    <i class="icon edit-list ion-edit"></i>
+ 	    <i class="icon edit-list ion-edit" ui-sref="menu.editpaiement({account: paiement.account, id: paiement._id})"></i>
   	  </ion-item>
   	</ion-list>      
   </ion-content>
+
+  <!-- Colored FAB button with ripple -->
+  <button class="fab-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ui-sref="menu.createpaiement({account: 1000})">
+    <i class="material-icons">add</i>
+  </button>
 </ion-view>

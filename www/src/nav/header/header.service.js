@@ -1,6 +1,7 @@
 angular.module('temetfact').factory("HeaderService", function () {
 
 	var title;
+	var previousURL;
 
 	return {
 
@@ -8,19 +9,21 @@ angular.module('temetfact').factory("HeaderService", function () {
 			title = value;
 		},
 
-		getHeaderTitle: function(data) {
+		setHeaderBack: function(value) {
+			previousURL = value;
+		},
+
+		getHeaderTitle: function() {
 			var titleReturn = title;
 			title = '';
 			return titleReturn;
 		},
-/*
-		getHeaderTitle: function(data) {
-			return ('title' in data) ? data.title : "";
+
+		getHeaderBack: function() {
+			var previousURLReturn = previousURL;
+			previousURL = '';
+			return previousURLReturn;
 		},
-*/
-		getHeaderBack: function(data) {
-			return ('previousURL' in data) ? data.previousURL : "";
-		}
 	}
 
 });

@@ -6,7 +6,7 @@
 }
 
 .paiement-account {
-    font-size: 1em;
+    font-size: 1.3em;
 }
 
 .edit-list {
@@ -24,6 +24,11 @@
     right:50px;
 }
 
+.logo {
+    text-align: center;
+    font-size:3em;
+    padding-bottom: 8vh;
+}
 
 /* Empty. Add your own CSS if you like */
 

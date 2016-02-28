@@ -5,9 +5,17 @@
         <a class="item item-icon-left item-text-wrap" href="#">
             <h2>Bonjour {{userName}}</h2>
         </a>
-        <a class="item item-icon-left item-text-wrap" ui-shref="menu.client">
+        <a class="item item-icon-left item-text-wrap" ng-click="goTo('menu.client')">
             <i class="icon ion-person-stalker"></i>
             <h2>Clients</h2>
+        </a>
+        <a class="item item-icon-left item-text-wrap" ng-click="goTo('menu.paiements', {account:1000})">
+            <i class="icon ion-cash"></i>
+            <h2>Paiements</h2>
+        </a>
+        <a class="item item-icon-left item-text-wrap" ng-click="goTo('menu.paiements', {account:1010})">
+            <i class="icon ion-card"></i>
+            <h2>Paiements</h2>
         </a>
         <div class="padding">
             <button class="button button-block button-assertive" ng-click="logout()">Logout</button>

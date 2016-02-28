@@ -26,15 +26,19 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
   .config(function ($urlRouterProvider, $stateProvider) {
 
     //resolve to restrict access without authentification
-    var authResolve = function(LoginService, $state){
-      var promise = LoginService.requireAuth()
-        .catch(function(error){
-
-          $state.go("login");
-
-          return promise;
-        });
-      return promise;
+    var authResolve = function(LoginService, $q, $state){
+      return LoginService.requireAuth()
+        .then(function(success) {
+        }, function(error) {
+           return LoginService.checkCredentials()
+            .then(function() {
+              return LoginService.requireAuth();
+            }, function() {
+              $state.go("login");
+              var defer = $q.defer();
+              return defer.reject();
+         });
+      });
     };
 
     $stateProvider
@@ -46,7 +50,7 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
         templateUrl: "src/nav/menu/menu.html",
         controller: "MenuCtrl",
 
-        //disable resolve auth to test more quickly
+        // Check if authentificated
         resolve:{
           auth: authResolve
         }
@@ -54,46 +58,66 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
 
       .state('menu.client', {
         url: '/client',
-        data:{
-          title:"Clients",
-        },
         views: {
           'menu-content': {
             templateUrl: 'src/client/clients.html',
             controller: 'ClientsCtrl'
           }
-        }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Clients');
+          }
+        }        
+      })
+
+      .state('menu.paiements', {
+        url: '/paiements/:account',
+        views: {
+          'menu-content': {
+            templateUrl: 'src/client/paiements.html',
+            controller: 'PaiementsCtrl'
+          }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Paiements');
+          }
+        }        
       })
 
       .state('menu.clientdetail', {
         url: '/client-detail/:id',
-        data:{
-          title:"Détail du client",
-          previousURL:'menu.client'
-        },
         views: {
           'menu-content': {
             templateUrl: 'src/client/client-detail.html',
             controller:'ClientDetailCtrl'
           }
-        }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Détail du client');
+          },
+          setBackURL : function(HeaderService) {
+            HeaderService.setHeaderBack('menu.client');
+          }
+        }        
       })
 
       .state('menu.clientdetail.profil', {
         url: '/profil',
-        data:{
-          title:"Détail du client",
-          previousURL:'menu.client'
-        },
         views: {
           'profil': {
             templateUrl: 'src/client/client-profile.html',
             controller:'ClientDetailCtrl'
           }
         },
-        resolve:{
+        resolve: {
           setTitle : function(HeaderService) {
-            HeaderService.setHeaderTitle('Toto');
+            HeaderService.setHeaderTitle('Détail du client');
+          },
+          setBackURL : function(HeaderService) {
+            HeaderService.setHeaderBack('menu.client');
           }
         }
 
@@ -101,64 +125,111 @@ angular.module('temetfact', ['ionic', 'firebase', 'ngCordova', 'ionic-datepicker
 
       .state('menu.clientdetail.paiements', {
         url: '/paiements',
-        data:{
-          title:"Paiements du client",
-          previousURL:'menu.client'
-        },
         views: {
           'paiements': {
             templateUrl: 'src/client/client-paiements.html',
             controller:'ClientPaiementsCtrl'
           }
         },
-        resolve:{
+        resolve: {
           setTitle : function(HeaderService) {
-            HeaderService.setHeaderTitle('Titi');
+            HeaderService.setHeaderTitle('Paiements du client');
+          },
+          setBackURL : function(HeaderService) {
+            HeaderService.setHeaderBack('menu.client');
           }
         }
       })
 
       .state('menu.clientdetail.traitements', {
         url: '/traitements',
-        data:{
-          title:"Traitements du client",
-          previousURL:'menu.client'
-        },
         views: {
           'traitements': {
             templateUrl: 'src/client/client-traitements.html',
             controller:'ClientTraitementsCtrl'
+          }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Traitements du client');
+          },
+          setBackURL : function(HeaderService) {
+            HeaderService.setHeaderBack('menu.client');
           }
         }
       })
 
       .state('menu.editclient', {
         url: '/edit-client/:id',
-        data:{
-          title:"Edition du client",
-          previousURL:'menu.client'
-        },
         views: {
           'menu-content': {
             templateUrl: 'src/client/client-edit.html',
             controller:'ClientDetailCtrl'
+          }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Edition du client');
+          },
+          setBackURL : function(HeaderService, $stateParams) {
+            HeaderService.setHeaderBack('menu.clientdetail({id: ' + $stateParams.id + '})');
           }
         }
       })
 
       .state('menu.createclient', {
         url: '/create-client',
-        data:{
-          title:"Créer un client",
-          previousURL:'menu.client'
-        },
         views: {
           'menu-content': {
             templateUrl: 'src/client/client-edit.html',
             controller:'ClientDetailCtrl'
           }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Créer un client');
+          },
+          setBackURL : function(HeaderService) {
+            HeaderService.setHeaderBack('menu.client');
+          }
         }
       })
+
+      .state('menu.editpaiement', {
+        url: '/edit-paiement/:account/:id',
+        views: {
+          'menu-content': {
+            templateUrl: 'src/client/paiement-edit.html',
+            controller:'PaiementDetailCtrl'
+          }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Edition du paiement');
+          },
+          setBackURL : function(HeaderService, $stateParams) {
+            HeaderService.setHeaderBack('menu.paiements({account: ' + $stateParams.account + '})');
+          }
+        }
+      })
+
+      .state('menu.createpaiement', {
+        url: '/create-paiement/:account',
+        views: {
+          'menu-content': {
+            templateUrl: 'src/client/paiement-edit.html',
+            controller:'PaiementDetailCtrl'
+          }
+        },
+        resolve: {
+          setTitle : function(HeaderService) {
+            HeaderService.setHeaderTitle('Créer un paiement');
+          },
+          setBackURL : function(HeaderService) {
+            HeaderService.setHeaderBack('menu.paiements({account: ' + $stateParams.account + '})');
+          }
+        }
+      });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');

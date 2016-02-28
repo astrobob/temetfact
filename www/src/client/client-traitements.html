@@ -1,8 +1,9 @@
 <ion-view>
   <ion-content class="padding">
+    <h2>Traitements</h2>
   	<div ng-repeat="traitement in traitements">
   	  <i class="icon treatment-status" ng-class="traitement.type == 'P' ? 'ion-eye' : 'ion-eye-disabled'"></i>
-      <h1>{{ traitement.subject }}</h1>
+      <h3>{{ traitement.subject }}</h3>
       <p>
       <label>Type de traitement : <label>
       {{ traitement.treatment }}
@@ -11,7 +12,7 @@
       <label>Début du traitement : <label>
       {{ traitement.date | dateFormat }}
       </p>
-      <h2>Consultations</h2>
+      <h4>Consultations</h4>
   	  <ion-list>
   	    <ion-item ng-repeat="consult in traitement.consults">
   	      {{ consult.date | dateFormat }} -- {{consult.treatment}}
@@ -23,4 +24,9 @@
       <hr />
     </div>
   </ion-content>
+
+  <!-- Colored FAB button with ripple -->
+  <button class="fab-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ui-sref="menu.createtraitement">
+    <i class="material-icons">add</i>
+  </button>
 </ion-view>

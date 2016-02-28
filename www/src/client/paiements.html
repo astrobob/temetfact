@@ -1,0 +1,27 @@
+<ion-view>
+  <ion-content class="has-header">
+    <div class="list">
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Année
+        </div>
+        <select ng-model="selected.year" ng-change="update()">
+        <option ng-repeat="item in years" ng-selected="selected.year == item" value="{{item}}">{{item}}</option>
+        </select>
+      </label>
+    </div>
+    <div ng-repeat="(key,value) in groupedPaiements">
+      <div class="item item-divider">{{key}}</div>
+      <div class="item" ng-repeat="item in value | filter:query">
+        {{ item.date | dateFormat }} -- {{item.currency}} {{item.amount}} -- {{item.client.lastname}}
+        <i class="icon edit-list ion-edit" ui-sref="menu.editpaiement({account: account, id: item._id})"></i>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <!-- Colored FAB button with ripple -->
+  <button class="fab-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ui-sref="menu.createpaiement({account: account})">
+    <i class="material-icons">add</i>
+  </button>
+</ion-view>

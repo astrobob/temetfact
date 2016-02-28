@@ -15,6 +15,10 @@ angular.module('temetfact')
 
 		};
 
+		$scope.goTo=function(dest, args){
+			$ionicSideMenuDelegate.toggleRight();
+			$state.go(dest, args);
+		};		
 
 		$rootScope.$on("loginSuccess",function(){
 			$scope.userName = LoginService.userEmail;

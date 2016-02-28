@@ -1,0 +1,39 @@
+<ion-view>
+  <ion-content class="has-header padding" ng-controller="ClientsCtrl">
+	<div class="list list-inset">
+
+	  <label>
+	    Date
+	      <ionic-datepicker idate="currentDate" >
+	    	<button class="button button-block button-positive"> {{ paiement.date | date:'dd - MMMM - yyyy' }} </button>
+		  </ionic-datepicker>
+	  </label>
+
+	  <label class="item item-input item-select">
+	    <div class="input-label">
+	      Monnaie
+	    </div>
+	    <select ng-model="paiement.currency">
+			<option value="CHF" selected="selected">CHF</option>
+			<option value="EUR">EUR</option> 
+	    </select>
+	  </label>
+
+	  <label class="item item-input">
+	    <input type="text" placeholder="amount" ng-model="paiement.amount">
+	  </label>
+
+	  <label class="item item-input item-select">
+	    <div class="input-label">
+	      Compte
+	    </div>
+	    <select ng-model="paiement.account">
+			<option value="1000" selected="selected">Cash</option>
+			<option value="1010">Virement</option> 
+	    </select>
+	  </label>
+
+    </div>
+	<button class="button button-block button-positive">Enregistrer</button>
+  </ion-content>
+</ion-view>

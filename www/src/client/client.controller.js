@@ -38,7 +38,6 @@ angular.module('temetfact')
 				for(var k in client.treatment_id) {
 					ClientService.getPaiement(client.paiement_id[k]).then(function(data) {
 						$scope.paiements.push(data);
-						console.log($scope.paiements)
 					});
 				}
 			}

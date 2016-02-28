@@ -7,7 +7,9 @@ angular.module('temetfact')
 
 			LoginService.login($scope.email,$scope.password)
 				.then(function(){
-
+					if ($scope.savePassword) {
+						LoginService.saveCredentials($scope.email, $scope.password)
+					}
 					$state.go('menu.client');
 					$ionicLoading.hide();
 				}, function()
@@ -18,7 +20,6 @@ angular.module('temetfact')
 
 
 		$scope.openSignUp= function(){
-			console.log('toto')
 			$ionicModal.fromTemplateUrl('src/auth/signup/signup.modal.html', {
 				scope: $scope,
 				animation: 'slide-in-up'
