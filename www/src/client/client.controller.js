@@ -16,6 +16,26 @@ angular.module('temetClient')
 
 	.controller('ClientDetailCtrl', function($scope, ClientService, $stateParams) {
 
+		$scope.civilStatusList = ['', 'Célibataire', 'Divorcé(e)', 'Marié(e)', 'Séparé', 'Veuf(ve)'];
+		$scope.genderList = ['M.', 'Mme', 'Mlle', 'Dr.', 'Prof.'];
+		$scope.countryList = {
+			ch : 'Suisse',
+			fr : 'France',
+			de : 'Allemagne',
+			au : 'Autriche',
+			be : 'Belgique',
+			dk : 'Danemark',
+			es : 'Espagne',
+			fi : 'Finlande',
+			gb : 'Grande-Bretagne',
+			it : 'Italie',
+			li : 'Liechtenstein',
+			lu : 'Luxembourg',
+			no : 'Norvège',
+			po : 'Portugal',
+			se : 'Suède'    
+		}
+
 		if ($stateParams.id) {
 			ClientService.getClient($stateParams.id).then(function(data){
 				$scope.client = data;
@@ -64,5 +84,7 @@ angular.module('temetClient')
 				}
 			}
 		})
+
+		$scope.clientID = $stateParams.id;
 
 	});

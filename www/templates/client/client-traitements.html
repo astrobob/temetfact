@@ -16,17 +16,16 @@
   	  <ion-list>
   	    <ion-item ng-repeat="consult in traitement.consults">
   	      {{ consult.date | dateFormat }} -- {{consult.treatment}}
-          <i class="icon edit-list ion-edit"></i>
   	    </ion-item>
   	  </ion-list>      
-      <button class="button button-clear button-positive">Modifier le traitement</button>
+          <button class="button button-clear button-positive" ui-sref="menu.edittraitement({id: traitement._id, clientId: clientID})">Modifier le traitement</button>
       <p>&nbsp;</p>
       <hr />
     </div>
   </ion-content>
 
   <!-- Colored FAB button with ripple -->
-  <button class="fab-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ui-sref="menu.createtraitement">
+  <button class="fab-button mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ui-sref="menu.createtraitement({ clientId: clientID })">
     <i class="material-icons">add</i>
   </button>
 </ion-view>

@@ -3,12 +3,8 @@
 	<div class="list list-inset">
 	  <label class="item item-input item-select">
 	    <div class="input-label">Genre</div>
-	    <select>
-	      <option value="M.">M.</option>
-	      <option value="Mme">Mme</option>
-	      <option value="Mlle">Mlle</option>
-	      <option value="Dr.">Dr.</option>
-	      <option value="Prof.">Prof.</option>
+	    <select ng-model="client.gender">
+	    	<option ng-repeat="item in genderList" ng-selected="client.country == item" value="{{item}}">{{item}}</option>
 	    </select>
 	  </label>
 	  <label class="item item-input">
@@ -31,21 +27,7 @@
 	      Pays
 	    </div>
 	    <select ng-model="client.country">
-			<option value="ch" selected="selected">Suisse</option>
-			<option value="fr">France</option>
-			<option value="de">Allemagne</option>
-			<option value="au">Autriche</option>
-			<option value="be">Belgique</option>
-			<option value="dk">Danemark</option>
-			<option value="es">Espagne</option>
-			<option value="fi">Finlande</option>
-			<option value="gb">Grande-Bretagne</option>
-			<option value="it">Italie</option>
-			<option value="li">Liechtenstein</option>
-			<option value="lu">Luxembourg</option>
-			<option value="no">Norvège</option>
-			<option value="po">Portugal</option>
-			<option value="se">Suède</option></select>	    
+	    	<option ng-repeat="(key, value) in countryList" ng-selected="client.country == key" value="{{key}}">{{value}}</option>
 	    </select>
 	  </label>
 	</div>
@@ -69,12 +51,7 @@
 	  <label class="item item-input item-select">
 	    <div class="input-label">Etat civil</div>
 	    <select ng-model="client.civilstatus">
-	      <option value=""></option>
-	      <option value="Célibataire">Célibataire</option>
-	      <option value="Divorcé(e)">Divorcé(e)</option>
-	      <option value="Marié(e)">Marié(e)</option>
-	      <option value="Séparé">Séparé</option>
-	      <option value="Veuf(ve)">Veuf(ve)</option>
+	    	<option ng-repeat="item in civilStatusList" ng-selected="client.civilstatus == item" value="{{item}}">{{item}}</option>
 	    </select>
 	  </label>
 	  <label class="item item-input">
@@ -91,8 +68,10 @@
 	  </label>	  
 	  <label>
 	    Date de naissance
-	    <button class="button button-block button-positive"> {{ client.birthdate | date:'dd - MMMM - yyyy' }} </button>
-	  </label>	
+	      <ionic-datepicker idate="currentDate" >
+	    	<button class="button button-block button-positive"> {{ client.birthdate | date:'dd - MMMM - yyyy' }} </button>
+		  </ionic-datepicker>
+	  </label>
 	</div>
     <h2>Etat de santé</h2>    
     <div class="list list-inset">

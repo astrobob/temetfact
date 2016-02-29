@@ -41,6 +41,19 @@ angular.module('temetPaiement')
 
 	.controller('PaiementDetailCtrl', function($scope, PaiementService, $stateParams) {
 
+		$scope.currencyList = ['CHF', 'EUR'];
+		$scope.accountList = {1000 : 'Cash', 1010 : 'Virement'};
+		$scope.paiement = {
+			_id: 0,
+			account: "1000",
+			amount: 0,
+			changed: 0,
+			client_id: 0,
+			created: 0,
+			currency: "CHF",
+			date: new Date().toISOString()
+		}
+
 		if ($stateParams.id) {
 			PaiementService.getPaiement($stateParams.id).then(function(data){
 				$scope.paiement = data;

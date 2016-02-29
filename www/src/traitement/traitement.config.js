@@ -19,8 +19,11 @@ angular.module('temetTraitement', [])
         }        
       })
 
-      .state('menu.editraitement', {
+      .state('menu.edittraitement', {
         url: '/edit-traitement/:id',
+        params: {
+          clientId: null,
+        },
         views: {
           'menu-content': {
             templateUrl: 'templates/traitement/traitement-edit.html',
@@ -29,16 +32,19 @@ angular.module('temetTraitement', [])
         },
         resolve: {
           setTitle : function(HeaderService) {
-            HeaderService.setHeaderTitle('Edition du paiement');
+            HeaderService.setHeaderTitle('Edition du traitement');
           },
-          setBackURL : function(HeaderService) {
-            HeaderService.setHeaderBack('menu.traitements');
+          setBackURL : function(HeaderService, $stateParams) {
+            HeaderService.setHeaderBack('menu.clientdetail({id: ' + $stateParams.clientId + '})');
           }
         }
       })
 
       .state('menu.createtraitement', {
         url: '/create-traitement',
+        params: {
+          clientId: null,
+        },
         views: {
           'menu-content': {
             templateUrl: 'templates/traitement/traitement-edit.html',
@@ -49,8 +55,8 @@ angular.module('temetTraitement', [])
           setTitle : function(HeaderService) {
             HeaderService.setHeaderTitle('Créer un traitement');
           },
-          setBackURL : function(HeaderService) {
-            HeaderService.setHeaderBack('menu.traitements');
+          setBackURL : function(HeaderService, $stateParams) {
+            HeaderService.setHeaderBack('menu.clientdetail({id: ' + $stateParams.clientId + '})');
           }
         }
       });

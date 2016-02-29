@@ -14,8 +14,7 @@
 	      Monnaie
 	    </div>
 	    <select ng-model="paiement.currency">
-			<option value="CHF" selected="selected">CHF</option>
-			<option value="EUR">EUR</option> 
+	    	<option ng-repeat="item in currencyList" ng-selected="paiement.currency == item" value="{{item}}">{{item}}</option>
 	    </select>
 	  </label>
 
@@ -28,8 +27,7 @@
 	      Compte
 	    </div>
 	    <select ng-model="paiement.account">
-			<option value="1000" selected="selected">Cash</option>
-			<option value="1010">Virement</option> 
+	    	<option ng-repeat="(key, value) in accountList" ng-selected="paiement.account == key" value="{{key}}">{{value}}</option>
 	    </select>
 	  </label>
 
