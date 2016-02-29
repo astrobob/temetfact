@@ -1,57 +1,59 @@
-angular.module('temetfact').factory("FirebaseService", function ($firebaseAuth, DATABASE_URL) {
+angular.module('temetCommon')
 
-	var ref = new Firebase(DATABASE_URL);
-	var auth = $firebaseAuth(ref);
+	.factory("FirebaseService", function ($firebaseAuth, DATABASE_URL) {
 
-	return {
+		var ref = new Firebase(DATABASE_URL);
+		var auth = $firebaseAuth(ref);
 
-		login: function (email,password) {
+		return {
 
-			var promise = auth.$authWithPassword({
-				email: email,
-				password: password
-			}).catch(function(error) {
+			login: function (email,password) {
 
-				alert("FirebaseService. Authentication failed:" + error);
+				var promise = auth.$authWithPassword({
+					email: email,
+					password: password
+				}).catch(function(error) {
+
+					alert("FirebaseService. Authentication failed:" + error);
+					return promise;
+				});
+
 				return promise;
-			});
+			},
 
-			return promise;
-		},
+			logout:function(){
 
-		logout:function(){
+				//$unauth dosen't return a promise because it's a synchronous event
+				//https://github.com/firebase/angularfire/issues/581
+				auth.$unauth();
 
-			//$unauth dosen't return a promise because it's a synchronous event
-			//https://github.com/firebase/angularfire/issues/581
-			auth.$unauth();
+			},
 
-		},
+			signUp: function (email, password) {
 
-		signUp: function (email, password) {
+				var that = this;
 
-			var that = this;
+				var promise = auth.$createUser({
+					email: email,
+					password: password
+				}).then(function(authData) {
 
-			var promise = auth.$createUser({
-				email: email,
-				password: password
-			}).then(function(authData) {
+					promise = that.login(email,password);
+					return promise;
 
-				promise = that.login(email,password);
+				}).catch(function (error) {
+					alert("FirebaseService. " + error);
+					return promise;
+
+				});
+
 				return promise;
 
-			}).catch(function (error) {
-				alert("FirebaseService. " + error);
-				return promise;
+			},
 
-			});
-
-			return promise;
-
-		},
-
-		requireAuth : function(){
-			return auth.$requireAuth();
+			requireAuth : function(){
+				return auth.$requireAuth();
+			}
 		}
-	}
 
-});
+	});

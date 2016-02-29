@@ -1,4 +1,5 @@
-angular.module('temetfact')
+angular.module('temetAuth')
+
 	.controller('SignupCtrl', function($scope, LoginService, $state) {
 
 

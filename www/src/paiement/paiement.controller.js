@@ -1,5 +1,6 @@
-angular.module('temetfact')
-	.controller('PaiementsCtrl', function($scope, $ionicLoading, ClientService, $stateParams) {
+angular.module('temetPaiement')
+
+	.controller('PaiementsCtrl', function($scope, $ionicLoading, ClientService, PaiementService, $stateParams) {
 
 		// Initiate Ionic Loader
 		$ionicLoading.show({
@@ -20,7 +21,7 @@ angular.module('temetfact')
 
 		// Load all selected year's paiements grouped by month
 		$scope.update = function() {
-			ClientService.getGroupedPaiements($stateParams.account, $scope.selected.year).then(function(data){
+			PaiementService.getGroupedPaiements($stateParams.account, $scope.selected.year).then(function(data){
 				$scope.groupedPaiements = data;
 				for(var k in data) {
 					for (var j in data[k]) {
@@ -38,10 +39,10 @@ angular.module('temetfact')
 	
 	})
 
-	.controller('PaiementDetailCtrl', function($rootScope, $scope, $ionicLoading, ClientService, $stateParams, HeaderService) {
+	.controller('PaiementDetailCtrl', function($scope, PaiementService, $stateParams) {
 
 		if ($stateParams.id) {
-			ClientService.getPaiement($stateParams.id).then(function(data){
+			PaiementService.getPaiement($stateParams.id).then(function(data){
 				$scope.paiement = data;
 			});
 		}

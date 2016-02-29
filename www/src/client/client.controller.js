@@ -1,5 +1,6 @@
-angular.module('temetfact')
-	.controller('ClientsCtrl', function($scope, $ionicLoading, ClientService, HeaderService) {
+angular.module('temetClient')
+
+	.controller('ClientsCtrl', function($scope, $ionicLoading, ClientService) {
 
 		$ionicLoading.show({
 			content: 'Loading...',
@@ -10,14 +11,10 @@ angular.module('temetfact')
 			$scope.grouped = data;
 			$ionicLoading.hide();
 		});
-
-		$scope.filterFunction = function(element) {
-			return element.name.match(/^Ma/) ? true : false;
-		};
-
+		
 	})
 
-	.controller('ClientDetailCtrl', function($rootScope, $scope, $ionicLoading, ClientService, $stateParams, HeaderService) {
+	.controller('ClientDetailCtrl', function($scope, ClientService, $stateParams) {
 
 		if ($stateParams.id) {
 			ClientService.getClient($stateParams.id).then(function(data){
@@ -29,14 +26,14 @@ angular.module('temetfact')
 
 	})
 
-	.controller('ClientPaiementsCtrl', function($scope, $ionicLoading, ClientService, $stateParams, HeaderService) {
+	.controller('ClientPaiementsCtrl', function($scope, ClientService, PaiementService, $stateParams) {
 
 		ClientService.getClient($stateParams.id).then(function(data){
 			var client = data;
 			if (client.treatment_id) {
 				$scope.paiements = new Array();
 				for(var k in client.treatment_id) {
-					ClientService.getPaiement(client.paiement_id[k]).then(function(data) {
+					PaiementService.getPaiement(client.paiement_id[k]).then(function(data) {
 						$scope.paiements.push(data);
 					});
 				}
@@ -45,19 +42,19 @@ angular.module('temetfact')
 
 	})
 
-	.controller('ClientTraitementsCtrl', function($scope, $ionicLoading, ClientService, $stateParams) {
+	.controller('ClientTraitementsCtrl', function($scope, ClientService, TraitementService, $stateParams) {
 
 		ClientService.getClient($stateParams.id).then(function(data){
 			var client = data;
 			if (client.treatment_id) {
 				$scope.traitements = new Array();
 				for(var k in client.treatment_id) {
-					ClientService.getTraitement(client.treatment_id[k]).then(function(data) {
+					TraitementService.getTraitement(client.treatment_id[k]).then(function(data) {
 						var traitement = data;
 						if (traitement.consultations) {
 							traitement.consults = new Array();
 							for(var k in traitement.consultations) {
-								ClientService.getConsultation(traitement.consultations[k]).then(function(data) {
+								TraitementService.getConsultation(traitement.consultations[k]).then(function(data) {
 									traitement.consults.push(data);
 								});
 							}

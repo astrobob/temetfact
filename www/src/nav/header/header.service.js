@@ -1,29 +1,31 @@
-angular.module('temetfact').factory("HeaderService", function () {
+angular.module('temetNav')
 
-	var title;
-	var previousURL;
+	.factory("HeaderService", function () {
 
-	return {
+		var title;
+		var previousURL;
 
-		setHeaderTitle: function(value) {
-			title = value;
-		},
+		return {
 
-		setHeaderBack: function(value) {
-			previousURL = value;
-		},
+			setHeaderTitle: function(value) {
+				title = value;
+			},
 
-		getHeaderTitle: function() {
-			var titleReturn = title;
-			title = '';
-			return titleReturn;
-		},
+			setHeaderBack: function(value) {
+				previousURL = value;
+			},
 
-		getHeaderBack: function() {
-			var previousURLReturn = previousURL;
-			previousURL = '';
-			return previousURLReturn;
-		},
-	}
+			getHeaderTitle: function() {
+				var titleReturn = title;
+				title = '';
+				return titleReturn;
+			},
 
-});
+			getHeaderBack: function() {
+				var previousURLReturn = previousURL;
+				previousURL = '';
+				return previousURLReturn;
+			},
+		}
+
+	});

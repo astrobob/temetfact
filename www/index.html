@@ -14,7 +14,7 @@
 
 
     <!-- Material design -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material%20Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
 
@@ -36,28 +36,39 @@
     <script src="src/app.js"></script>
 
     <!-- common -->
+    <script src="src/common/common.config.js"></script>
     <script src="src/common/firebase/firebase.service.js"></script>
     <script src="src/common/modal/modal.controller.js"></script>
 
     <!-- auth -->
-    <script src="src/auth/login/login.js"></script>
+    <script src="src/auth/auth.config.js"></script>
     <script src="src/auth/login/login.controller.js"></script>
     <script src="src/auth/login/login.service.js"></script>
     <script src="src/auth/signup/signup.controller.js"></script>
 
     <!-- nav -->
+    <script src="src/nav/nav.config.js"></script>
     <script src="src/nav/header/header.controller.js"></script>
     <script src="src/nav/header/header.service.js"></script>
     <script src="src/nav/menu/menu.controller.js"></script>
     <script src="src/nav/tabs/tabs.controller.js"></script>
 
     <!-- client -->
+    <script src="src/client/client.config.js"></script>
     <script src="src/client/client.controller.js"></script>
     <script src="src/client/client.filters.js"></script>
     <script src="src/client/client.service.js"></script>
 
     <!-- paiement -->
-    <script src="src/client/paiement.controller.js"></script>
+    <script src="src/paiement/paiement.config.js"></script>
+    <script src="src/paiement/paiement.controller.js"></script>
+    <script src="src/paiement/paiement.filters.js"></script>
+    <script src="src/paiement/paiement.service.js"></script>
+
+    <!-- paiement -->
+    <script src="src/traitement/traitement.config.js"></script>
+    <script src="src/traitement/traitement.controller.js"></script>
+    <script src="src/traitement/traitement.service.js"></script>
     
   </head>
   <body ng-app="temetfact">

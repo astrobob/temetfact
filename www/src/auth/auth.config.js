@@ -1,4 +1,5 @@
-angular.module('temetfact')
+angular.module('temetAuth', [])
+
 	.config(function ($stateProvider) {
 
 	    //resolve to restrict access without authentification

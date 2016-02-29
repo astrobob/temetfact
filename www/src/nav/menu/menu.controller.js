@@ -1,4 +1,5 @@
-angular.module('temetfact')
+angular.module('temetNav')
+
 	.controller('MenuCtrl', function($rootScope,$scope,LoginService,$state,$ionicSideMenuDelegate) {
 
 		$scope.userName = LoginService.userEmail;

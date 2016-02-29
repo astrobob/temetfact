@@ -1,62 +1,30 @@
-angular.module('temetfact').factory("ClientService", function ($firebaseArray, $firebaseObject, $filter, DATABASE_URL) {
-	var ref = new Firebase('https://temetfacturation.firebaseio.com');
+angular.module('temetClient')
 
-	return {
+	.factory("ClientService", function ($firebaseArray, $firebaseObject, $filter, DATABASE_URL) {
+		var ref = new Firebase('https://temetfacturation.firebaseio.com');
 
-		getGroupedClients: function() {
-			return this.getClients().then(function(result){
-				return $filter('groupByFirstLetter')(result);
-			});
-		},
+		return {
 
-		getClients: function() {
-			var _clients = $firebaseArray(ref.child('client'));
-			return _clients.$loaded().then(function (res) {
-				return res;
-			});
-		},
+			getGroupedClients: function() {
+				return this.getClients().then(function(result){
+					return $filter('groupByFirstLetter')(result);
+				});
+			},
 
-		getClient: function(clientID) {
-			var _client = $firebaseObject(ref.child('client').child(clientID));
-			return _client.$loaded().then(function (res) {
-				return res;
-			});
-		},
+			getClients: function() {
+				var _clients = $firebaseArray(ref.child('client'));
+				return _clients.$loaded().then(function (res) {
+					return res;
+				});
+			},
 
-		getTraitement: function(traitementID) {
-			var _traitement = $firebaseObject(ref.child('traitement').child(traitementID));
-			return _traitement.$loaded().then(function (res) {
-				return res;
-			});
-		},
+			getClient: function(clientID) {
+				var _client = $firebaseObject(ref.child('client').child(clientID));
+				return _client.$loaded().then(function (res) {
+					return res;
+				});
+			},
 
-		getConsultation: function(consultationID) {
-			var _consultations = $firebaseObject(ref.child('consultation').child(consultationID));
-			return _consultations.$loaded().then(function (res) {
-				return res;
-			});
-		},		
+		}
 
-		getPaiement: function(paiementID) {
-			var _paiement = $firebaseObject(ref.child('paiement').child(paiementID));
-			return _paiement.$loaded().then(function (res) {
-				return res;
-			});
-		},
-
-		getGroupedPaiements: function(account, year) {
-			return this.getPaiements().then(function(result) {
-				return $filter('groupByMonth')(result, account, year);
-			});
-		},
-
-		getPaiements: function() {
-			var _paiements = $firebaseArray(ref.child('paiement'));
-			return _paiements.$loaded().then(function (res) {
-				return res;
-			});
-		},
-
-	}
-
-});
+	});

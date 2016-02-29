@@ -1,6 +1,7 @@
 "use strict";
 
-angular.module('temetfact')
+angular.module('temetNav')
+
 	.controller('TabsCtrl', function($scope,$ionicModal) {
 
 		$scope.openModal= function(){

@@ -1,6 +1,7 @@
 "use strict";
 
-angular.module('temetfact')
+angular.module('temetCommon')
+
 	.controller('ModalCtrl', function($rootScope,$scope) {
 
 		$scope.openModal = function() {

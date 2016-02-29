@@ -1,6 +1,7 @@
 "use strict";
 
-angular.module('temetfact')
+angular.module('temetNav')
+
 	.controller('HeaderCtrl', function($rootScope, $scope, $state, HeaderService) {
 
 		//properties

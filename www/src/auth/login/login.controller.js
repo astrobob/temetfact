@@ -1,4 +1,5 @@
-angular.module('temetfact')
+angular.module('temetAuth')
+
 	.controller('LoginCtrl', function($scope, $ionicLoading,$ionicModal,LoginService,$state) {
 
 		$scope.login=function(){
